@@ -12,7 +12,7 @@ import SwiftData
 struct pia14iosjan21App: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            Item.self, PIAPlace.self, PIAItem.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
