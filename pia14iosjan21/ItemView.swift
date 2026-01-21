@@ -31,38 +31,46 @@ struct ItemView: View {
     }
     
     var body: some View {
-        
-        VStack {
+        ZStack {
             
-            if isEdit == false {
-                Text(currentitem.itemname)
+            VStack {
+                
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(PIACode.getPlaceColor(colornumber: currentitem.place.placecolor))
+            .opacity(0.7)
             
-            if isEdit == true {
-                TextField("", text: $editname)
+            VStack {
+                
+                if isEdit == false {
+                    Text(currentitem.itemname)
+                }
+                
+                if isEdit == true {
+                    TextField("", text: $editname)
+                }
+                
+                Text("Place: \(currentitem.place.name)")
+                
+                Spacer()
             }
-            
-            Text("Place: \(currentitem.place.name)")
-            
-            Spacer()
-        }
-        .padding()
-        .onAppear() {
-            editname = currentitem.itemname
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Delete") {
-                    deleteitem()
+            .padding()
+            .onAppear() {
+                editname = currentitem.itemname
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Delete") {
+                        deleteitem()
+                    }
+                }
+                ToolbarItem {
+                    Button(isEdit ? "Save" : "Edit") {
+                        changeedit()
+                    }
                 }
             }
-            ToolbarItem {
-                Button(isEdit ? "Save" : "Edit") {
-                    changeedit()
-                }
-            }
         }
-        
     
         
     }

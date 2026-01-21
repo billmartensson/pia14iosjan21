@@ -36,6 +36,11 @@ struct ContentView: View {
                                 Text(place.name)
                                 
                                 Text("\(place.items.count)")
+                                
+                                VStack {
+                                }
+                                .frame(width: 50, height: 50)
+                                .background(PIACode.getPlaceColor(colornumber: place.placecolor))
                             }
                             
                         }
