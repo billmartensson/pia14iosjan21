@@ -106,7 +106,7 @@ struct PlaceView: View {
                     TextField("Add item", text: $additem)
                     
                     Button("Add") {
-                        let newitem = PIAItem(place: currentplace, itemname: additem)
+                        let newitem = PIAItem(place: currentplace, itemname: additem, itemamount: 1)
                         currentplace.items.append(newitem)
                         modelContext.insert(newitem)
                     }
@@ -153,23 +153,8 @@ struct PlaceView: View {
 
 #Preview {
     
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: PIAPlace.self, configurations: config)
-
-    var exampleplace = PIAPlace(name: "Example Place")
-    exampleplace.placecolor = PlaceColor.green.rawValue
-    
-    container.mainContext.insert(exampleplace)
-    
-    var exampleitem1 = PIAItem(place: exampleplace, itemname: "Example Item one")
-    exampleplace.items.append(exampleitem1)
-
-    var exampleitem2 = PIAItem(place: exampleplace, itemname: "Example Item two")
-    exampleplace.items.append(exampleitem2)
-
-    
     return NavigationStack {
-        PlaceView(currentplace: exampleplace)
-            .modelContainer(container)
+        PlaceView(currentplace: PIACode.getExamplePlace())
+            .modelContainer(PIACode.getExampleContainer())
     }
 }

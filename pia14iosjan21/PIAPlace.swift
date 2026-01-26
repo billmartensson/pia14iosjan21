@@ -35,10 +35,13 @@ final class PIAItem {
     var place : PIAPlace
 
     var itemname: String
-    
-    init(place: PIAPlace, itemname: String) {
+    var itemamount: Int
+    var itembrand: String?
+
+    init(place: PIAPlace, itemname: String, itemamount: Int) {
         self.place = place
         self.itemname = itemname
+        self.itemamount = itemamount
     }
 }
 

@@ -64,10 +64,10 @@ struct ContentView: View {
     
     container.mainContext.insert(exampleplace)
     
-    var exampleitem1 = PIAItem(place: exampleplace, itemname: "Example Item one")
+    var exampleitem1 = PIAItem(place: exampleplace, itemname: "Example Item one", itemamount: 1)
     exampleplace.items.append(exampleitem1)
 
-    var exampleitem2 = PIAItem(place: exampleplace, itemname: "Example Item two")
+    var exampleitem2 = PIAItem(place: exampleplace, itemname: "Example Item two", itemamount: 1)
     exampleplace.items.append(exampleitem2)
 
     
