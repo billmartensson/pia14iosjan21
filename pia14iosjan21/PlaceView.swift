@@ -56,6 +56,7 @@ struct PlaceView: View {
                 
                 if isEdit == true {
                     TextField("", text: $editname)
+                        .prettyTextfield(headertext: "Name")
                 }
                 
                 VStack {
@@ -104,6 +105,7 @@ struct PlaceView: View {
                 
                 HStack {
                     TextField("Add item", text: $additem)
+                        .prettyTextfield(headertext: "Add item")
                     
                     Button("Add") {
                         let newitem = PIAItem(place: currentplace, itemname: additem, itemamount: 1)

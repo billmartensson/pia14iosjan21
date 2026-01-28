@@ -20,18 +20,17 @@ struct ItemEditView: View {
         
         VStack {
             
-            Text("Name:")
             TextField("", text: $editname)
+                .prettyTextfield(headertext: "Name")
                 .onChange(of: editname) { oldValue, newValue in
                     currentitem!.itemname = newValue
                 }
             
-            Text("Amount:")
             TextField("", text: $editamount)
-
-            Text("Brand:")
+                .prettyTextfield(headertext: "Amount")
+            
             TextField("", text: $editbrand)
-
+                .prettyTextfield(headertext: "Brand")
             
             
             

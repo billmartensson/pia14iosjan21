@@ -17,14 +17,16 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                
                 HStack {
                     TextField("Add place", text: $addplace)
-                    
+                        .prettyTextfield(headertext: "Add place")
+
                     Button("Add") {
                         let newplace = PIAPlace(name: addplace)
                         modelContext.insert(newplace)
                     }
+                    
+                    
                 }
                 
                 List {
