@@ -49,13 +49,22 @@ struct ItemView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Delete") {
+                
+                Button(action: {
                     deleteitem()
+                }) {
+                    Image(systemName: "trash")
                 }
             }
             ToolbarItem {
-                Button(isEdit ? "Save" : "Edit") {
+                Button(action: {
                     changeedit()
+                }) {
+                    if isEdit {
+                        Image(systemName: "checkmark.square")
+                    } else {
+                        Image(systemName: "square.and.pencil")
+                    }
                 }
             }
         }

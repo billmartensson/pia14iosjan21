@@ -20,6 +20,7 @@ struct FancyTextfield : ViewModifier {
                 .padding(.leading, 20)
             content
                 .frame(height: 40)
+                .padding(.horizontal, 20)
                 .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(thecolor)

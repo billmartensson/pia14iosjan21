@@ -28,53 +28,36 @@ struct ContentView: View {
                     
                     
                 }
+                .padding(.horizontal, 16)
                 
                 List {
                     ForEach(piaplaces) { place in
-                        NavigationLink(destination: PlaceView(currentplace: place)) {
-                            
-                            
-                            HStack {
-                                Text(place.name)
-                                
-                                Text("\(place.items.count)")
-                                
-                                VStack {
-                                }
-                                .frame(width: 50, height: 50)
-                                .background(PIACode.getPlaceColor(colornumber: place.placecolor))
-                            }
-                            
-                        }
                         
+                        PlaceRowView(place: place)
+                            .background(
+                                NavigationLink("", destination: PlaceView(currentplace: place))
+                            )
+                        
+                        .listRowInsets(
+                            EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+                        )
                     }
                 }
-                
+                .listStyle(.inset)
             }
-            .padding()
         }
     }
 
     
 }
+/*
+ NavigationLink(destination: PlaceView(currentplace: place)) {
+     }
 
+*/
 #Preview {
-    let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: PIAPlace.self, configurations: config)
-
-    var exampleplace = PIAPlace(name: "Example Place")
-    
-    container.mainContext.insert(exampleplace)
-    
-    var exampleitem1 = PIAItem(place: exampleplace, itemname: "Example Item one", itemamount: 1)
-    exampleplace.items.append(exampleitem1)
-
-    var exampleitem2 = PIAItem(place: exampleplace, itemname: "Example Item two", itemamount: 1)
-    exampleplace.items.append(exampleitem2)
-
-    
     return ContentView()
-        .modelContainer(container)
+        .modelContainer(PIACode.getExampleContainer())
 }
 
 

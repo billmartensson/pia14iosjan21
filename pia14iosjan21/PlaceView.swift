@@ -113,25 +113,38 @@ struct PlaceView: View {
                         modelContext.insert(newitem)
                     }
                 }
+                .padding(.horizontal, 16)
                 
                 List {
                     ForEach(currentplace.items) { item in
-                        NavigationLink(destination: ItemView(currentitem: item)) {
-                            Text(item.itemname)
-                            
-                        }
+                            HStack {
+                                Text(item.itemname)
+                                
+                                Spacer()
+                                
+                                Text("\(item.itemamount)")
+                                
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 20))
+                            }
+                            .background(
+                                NavigationLink("", destination: ItemView(currentitem: item))
+                            )
+                        
                     }
                 }
-                
+                .listStyle(.inset)
             }
-            .padding()
             .onAppear() {
                 editname = currentplace.name
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Delete") {
+                    
+                    Button(action: {
                         deleteitem()
+                    }) {
+                        Image(systemName: "trash")
                     }
                     .alert("Are you sure you want to delete?", isPresented: $showDeleteAlert) {
                         Button(role: .destructive) {
@@ -141,10 +154,17 @@ struct PlaceView: View {
                             Text("Delete")
                         }
                     }
+                    
                 }
                 ToolbarItem {
-                    Button(isEdit ? "Save" : "Edit") {
+                    Button(action: {
                         changeedit()
+                    }) {
+                        if isEdit {
+                            Image(systemName: "checkmark.square")
+                        } else {
+                            Image(systemName: "square.and.pencil")
+                        }
                     }
                 }
             }
